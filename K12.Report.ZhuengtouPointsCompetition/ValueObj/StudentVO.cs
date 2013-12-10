@@ -16,6 +16,30 @@ namespace K12.Report.ZhuengtouPointsCompetition.ValueObj
 
         public List<string> StudentTagId = new List<string>();
 
+        #region 排序
+        private string _classGradeYear;
+        public string ClassGradeYear {
+            get
+            {
+                return _classGradeYear;
+            }
+            set
+            {
+                if (!string.IsNullOrEmpty(value))
+                {
+                    if (value[0] > '6')
+                        _classGradeYear = Convert.ToString(value[0] - '6');
+                    else
+                        _classGradeYear = value;
+                }
+            }
+        }
+        public string ClassDisplayOrder { get; set; }
+        public string ClassName { get; set; }
+        public string StudentSeatNo { get; set; }
+        public string StudentNumber { get; set; }
+        #endregion
+
         /// <summary>
         /// Key: 大項目名稱, Value: 大項目分數
         /// </summary>
@@ -35,6 +59,12 @@ namespace K12.Report.ZhuengtouPointsCompetition.ValueObj
             StudentIdNumber = ("" + row["student_idnumber"]).Trim();
             StudentBirthday = Utility.ConvertStringToDateTime(("" + row["student_birthday"]).Trim());
             StudentTagId.Add(("" + row["ref_tag_id"]).Trim());
+
+            ClassGradeYear = ("" + row["class_grade_year"]).Trim();
+            ClassDisplayOrder = ("" + row["class_display_order"]).Trim();
+            ClassName = ("" + row["class_name"]).Trim();
+            StudentSeatNo = ("" + row["student_seat_no"]).Trim();
+            StudentNumber = ("" + row["student_number"]).Trim();
 
             ItemList = new Dictionary<string,decimal>();
             DetailItemList = new Dictionary<string, Dictionary<string, DetailItemVO>>();

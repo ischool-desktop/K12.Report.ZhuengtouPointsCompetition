@@ -18,8 +18,8 @@ namespace K12.Report.ZhuengtouPointsCompetition
             CheckUDTExist();
 
             RibbonBarItem rbRptItem1 = MotherForm.RibbonBarItems["學生", "資料統計"];
-            rbRptItem1["報表"]["其它相關報表"]["中投區積分比序"].Enable = Permissions.IsEnablePointsReport;
-            rbRptItem1["報表"]["其它相關報表"]["中投區積分比序"].Click += delegate
+            rbRptItem1["報表"]["成績相關報表"]["中投區積分比序"].Enable = Permissions.IsEnablePointsReport;
+            rbRptItem1["報表"]["成績相關報表"]["中投區積分比序"].Click += delegate
             {
                 if (NLDPanels.Student.SelectedSource.Count > 0)
                 {

@@ -176,6 +176,13 @@ namespace K12.Report.ZhuengtouPointsCompetition
         private void OutDetailTitle(Cells cells)
         {
             int columnIndex = 0;
+            // 年級/班級序號/班級名稱/座號/學號/姓名
+            cells[_DetailRowIndex, columnIndex++].PutValue("班級年級");
+            cells[_DetailRowIndex, columnIndex++].PutValue("班級序號");
+            cells[_DetailRowIndex, columnIndex++].PutValue("班級名稱");
+            cells[_DetailRowIndex, columnIndex++].PutValue("座號");
+            cells[_DetailRowIndex, columnIndex++].PutValue("學號");
+
             cells[_DetailRowIndex, columnIndex++].PutValue("學生姓名");
             cells[_DetailRowIndex, columnIndex++].PutValue("身分證統一編號");
             cells[_DetailRowIndex, columnIndex++].PutValue("生日");
@@ -209,6 +216,12 @@ namespace K12.Report.ZhuengtouPointsCompetition
 
             if (_DetailRowIndex > _MAX_ROW_COUNT)
                 return;
+            // 年級/班級序號/班級名稱/座號/學號/姓名
+            _DetailCells[_DetailRowIndex, columnIndex++].PutValue(StudentObj.ClassGradeYear);
+            _DetailCells[_DetailRowIndex, columnIndex++].PutValue(StudentObj.ClassDisplayOrder);
+            _DetailCells[_DetailRowIndex, columnIndex++].PutValue(StudentObj.ClassName);
+            _DetailCells[_DetailRowIndex, columnIndex++].PutValue(StudentObj.StudentSeatNo);
+            _DetailCells[_DetailRowIndex, columnIndex++].PutValue(StudentObj.StudentNumber);
 
             // 學生姓名
             _DetailCells[_DetailRowIndex, columnIndex++].PutValue(StudentObj.StudentName);

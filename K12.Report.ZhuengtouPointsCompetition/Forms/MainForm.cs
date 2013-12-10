@@ -187,7 +187,8 @@ namespace K12.Report.ZhuengtouPointsCompetition.Forms
 
             List<ValueObj.StudentVO> StudentList = studentListDic.Values.ToList();
 
-            // 排序??
+            // 排序
+            StudentList.Sort(SortStudent);
 
             // 輸出正常資料
             foreach (ValueObj.StudentVO studentObj in StudentList)
@@ -287,6 +288,8 @@ namespace K12.Report.ZhuengtouPointsCompetition.Forms
             else
             {
                 MsgBox.Show(Global.Title + "發生未預期錯誤。\n" + e.Error.Message);
+                // 將訊息儲存在本機 Exception 資料夾並傳回 ischool
+                SmartSchool.ErrorReporting.ErrorMessgae errMsg = new SmartSchool.ErrorReporting.ErrorMessgae(e.Error); 
             }
         }
 
@@ -764,7 +767,33 @@ namespace K12.Report.ZhuengtouPointsCompetition.Forms
         
         #endregion
 
-        
+        #region 排序
+        /// <summary>
+        /// 排序:年級/班級序號/班級名稱/座號/學號/姓名
+        /// </summary>
+        /// <param name="obj1"></param>
+        /// <param name="obj2"></param>
+        private int SortStudent(ValueObj.StudentVO obj1, ValueObj.StudentVO obj2)
+        {
+            string seatno1 = obj1.ClassGradeYear.PadLeft(1, '0');   // 年級
+            seatno1 += obj1.ClassDisplayOrder.PadLeft(3, '0');      // 班級序號
+            seatno1 += obj1.ClassName.PadLeft(20, '0');             // 班級名稱
+            seatno1 += obj1.StudentSeatNo.PadLeft(3, '0');          // 座號
+            seatno1 += obj1.StudentNumber.PadLeft(20, '0');         // 學號
+            seatno1 += obj1.StudentName.PadLeft(10, '0');           // 姓名
+
+            string seatno2 = obj2.ClassGradeYear.PadLeft(1, '0');   // 年級
+            seatno2 += obj2.ClassDisplayOrder.PadLeft(3, '0');      // 班級序號
+            seatno2 += obj2.ClassName.PadLeft(20, '0');             // 班級名稱
+            seatno2 += obj2.StudentSeatNo.PadLeft(3, '0');          // 座號
+            seatno2 += obj2.StudentNumber.PadLeft(20, '0');         // 學號
+            seatno2 += obj2.StudentName.PadLeft(10, '0');           // 姓名
+
+            return seatno1.CompareTo(seatno2);
+        }
+
+        #endregion
+
         #region 自訂方法
 
         /// <summary>
