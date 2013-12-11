@@ -25,6 +25,8 @@ namespace K12.Report.ZhuengtouPointsCompetition.ValueObj
             }
             set
             {
+                _classGradeYear = "";
+
                 if (!string.IsNullOrEmpty(value))
                 {
                     if (value[0] > '6')
