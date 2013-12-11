@@ -489,6 +489,8 @@ namespace K12.Report.ZhuengtouPointsCompetition.Forms
                 // loop 每個學期
                 foreach (ValueObj.SchoolYearSemester schoolYear in needSchoolYearList)
                 {
+                    if (schoolYear == null) continue;
+
                     List<ValueObj.ClubVO> clubList = clubsObj.GetClubsBySchoolYear(schoolYear);
                     // 假如有參加過社團, +1分
                     if (clubList.Count > 0)
