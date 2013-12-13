@@ -11,6 +11,13 @@ namespace K12.Report.ZhuengtouPointsCompetition.ValueObj
 
         public void AddDemerit(Data.DemeritRecord rec)
         {
+            
+            // 已銷過的不處理
+            if (rec.Cleared == "是") return;
+
+            // 非懲戒的不處理
+            if (rec.MeritFlag != "0") return;
+            
             ValueObj.SchoolYearSemester SchoolYearSemester = new ValueObj.SchoolYearSemester(rec.SchoolYear, rec.Semester);
             if (!DemeritsBySchoolYear.ContainsKey(SchoolYearSemester))
                 DemeritsBySchoolYear.Add(SchoolYearSemester, new List<Data.DemeritRecord>());

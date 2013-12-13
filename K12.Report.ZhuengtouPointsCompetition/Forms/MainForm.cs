@@ -389,6 +389,7 @@ namespace K12.Report.ZhuengtouPointsCompetition.Forms
 
                     decimal totalScore = 0;
                     decimal avgScore = 0;
+                    decimal scoreCount = 0;
                     // loop 領域的每個學期分數
                     foreach (KeyValuePair<int, ValueObj.SchoolYearSemester> pair in needSchoolYearList)
                     {
@@ -415,6 +416,7 @@ namespace K12.Report.ZhuengtouPointsCompetition.Forms
                         foreach (ValueObj.DomainVO domain in domainList)
                         {
                             totalScore += domain.DomainScore;
+                            scoreCount++;
                         }
                     }
 
@@ -422,10 +424,13 @@ namespace K12.Report.ZhuengtouPointsCompetition.Forms
                     ValueObj.DetailItemVO detailItem = studentObj.DetailItemList[itemName][detailItemName];
 
                     // 領域的平均
-                    avgScore = Math.Round((totalScore / needSchoolYearList.Count), 2, MidpointRounding.AwayFromZero);
+                    // 原本是固定除以需要的學期, 這樣有少一個學期分數的話, 會很難看, 所以改成有幾個分數就除以幾
+                    // avgScore = Math.Round((totalScore / needSchoolYearList.Count), 2, MidpointRounding.AwayFromZero);
+                    if (scoreCount > 0)
+                        avgScore = Math.Round((totalScore / scoreCount), 2, MidpointRounding.AwayFromZero);
 
                     // 回存此項目顯示的內容
-                    detailItem.Value = "平均: " + avgScore.ToString();
+                    detailItem.Value = "總分: " + totalScore + ", 學期數: " + scoreCount + ", 平均: " + avgScore.ToString();
 
                     // 看學生有沒有得到此積分
                     if (avgScore >= PassScore)
