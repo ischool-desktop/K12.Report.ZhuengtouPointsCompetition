@@ -46,22 +46,37 @@ namespace K12.Report.ZhuengtouPointsCompetition.DAO
         {
             Dictionary<string, ValueObj.ClubsVO> result = new Dictionary<string,ValueObj.ClubsVO>();
 
-            string tableName1 = "k12.clubrecord.universal";
-            string tableName2 = "k12.scjoin.universal";
+            // 社團參與紀錄的取得, 由k12.scjoin.universal改成k12.resultscore.universal, 2013/12/16
+            //string tableName1 = "k12.clubrecord.universal";
+            //string tableName2 = "k12.scjoin.universal";
 
-            if (IsUDTExists(tableName1) == false || IsUDTExists(tableName2) == false)
+            //if (IsUDTExists(tableName1) == false || IsUDTExists(tableName2) == false)
+            //{
+            //    if (Global.IsDebug) Console.WriteLine("[GetClubRecordByStudentIdList] UDT for Club not found!!");
+            //    return result;
+            //}
+
+            //StringBuilder sb = new StringBuilder();
+            //sb.Append("select t1.school_year, t1.semester, t2.ref_student_id");
+            //sb.Append(" from $" + tableName1 + " t1, $" + tableName2 + " t2");
+            //sb.Append(" where t2.ref_club_id::int = t1.uid");
+            //sb.Append(" and t2.ref_student_id in ('" + string.Join("','", StudentIdList.ToArray()) + "')");
+            //sb.Append(" and t1.school_year is not NULL");
+            //sb.Append(" and t1.semester is not NULL");
+
+            string tableName = "k12.resultscore.universal";
+            if (IsUDTExists(tableName) == false)
             {
-                if (Global.IsDebug) Console.WriteLine("[GetClubRecordByStudentIdList] UDT for Club not found!!");
+                if (Global.IsDebug) Console.WriteLine("[GetClubRecordByStudentIdList] UDT(" + tableName + ") for Club not found!!");
                 return result;
             }
 
             StringBuilder sb = new StringBuilder();
-            sb.Append("select t1.school_year, t1.semester, t2.ref_student_id");
-            sb.Append(" from $" + tableName1 + " t1, $" + tableName2 + " t2");
-            sb.Append(" where t2.ref_club_id::int = t1.uid");
-            sb.Append(" and t2.ref_student_id in ('" + string.Join("','", StudentIdList.ToArray()) + "')");
-            sb.Append(" and t1.school_year is not NULL");
-            sb.Append(" and t1.semester is not NULL");
+            sb.Append("select t.school_year, t.semester, t.ref_student_id");
+            sb.Append(" from $" + tableName + " t");
+            sb.Append(" where t.ref_student_id in ('" + string.Join("','", StudentIdList.ToArray()) + "')");
+            sb.Append(" and t.school_year is not NULL");
+            sb.Append(" and t.semester is not NULL");
 
             if (Global.IsDebug) Console.WriteLine("[GetClubRecordByStudentIdList] sql: [" + sb.ToString() + "]");
             
