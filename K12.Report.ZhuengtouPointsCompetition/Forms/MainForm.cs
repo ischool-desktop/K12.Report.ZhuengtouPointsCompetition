@@ -1,5 +1,6 @@
 ﻿using Aspose.Cells;
 using FISCA.Presentation.Controls;
+using K12.BusinessLogic;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -115,32 +116,64 @@ namespace K12.Report.ZhuengtouPointsCompetition.Forms
             Dictionary<string, ValueObj.ServicesVO> serviceListDic = DAO.FDQuery.GetLearningServiceByStudentIdList(_StudentIdList);
 
             // 取得懲戒紀錄
-            List<Data.DemeritRecord> demeritList = K12.Data.Demerit.SelectByStudentIDs(_StudentIdList);
-            Dictionary<string, ValueObj.DemeritsVO> demeritListDic = new Dictionary<string,ValueObj.DemeritsVO>();
-            // 把資料依照學生跟學年度學期分好
-            foreach (Data.DemeritRecord rec in demeritList)
-            {
-                if (!demeritListDic.ContainsKey(rec.RefStudentID))
-                    demeritListDic.Add(rec.RefStudentID, new ValueObj.DemeritsVO());
+            List<AutoSummaryRecord> records = AutoSummary.Select(_StudentIdList, null);
 
-                demeritListDic[rec.RefStudentID].AddDemerit(rec);
+            Dictionary<string, ValueObj.DemeritsVO> demeritListDic = new Dictionary<string, ValueObj.DemeritsVO>();
+            Dictionary<string, ValueObj.MeritsVO> meritListDic = new Dictionary<string, ValueObj.MeritsVO>();
+
+            foreach (AutoSummaryRecord record in records)
+            {
+                string id = record.RefStudentID;
+                int meritA = record.MeritA;
+                int meritB = record.MeritB;
+                int meritC = record.MeritC;
+                int demeritA = record.DemeritA;
+                int demeritB = record.DemeritB;
+                int demeritC = record.DemeritC;
+
+                if (meritA + meritB + meritC > 0)
+                {
+                    if (!meritListDic.ContainsKey(id))
+                        meritListDic.Add(id, new ValueObj.MeritsVO());
+
+                    meritListDic[id].AddMerit(record);
+                }
+
+                if (demeritA + demeritB + demeritC > 0)
+                {
+                    if (!demeritListDic.ContainsKey(id))
+                        demeritListDic.Add(id, new ValueObj.DemeritsVO());
+
+                    demeritListDic[id].AddDemerit(record);
+                }
             }
+
+            //List<Data.DemeritRecord> demeritList = K12.Data.Demerit.SelectByStudentIDs(_StudentIdList);
+            //Dictionary<string, ValueObj.DemeritsVO> demeritListDic = new Dictionary<string,ValueObj.DemeritsVO>();
+            //// 把資料依照學生跟學年度學期分好
+            //foreach (Data.DemeritRecord rec in demeritList)
+            //{
+            //    if (!demeritListDic.ContainsKey(rec.RefStudentID))
+            //        demeritListDic.Add(rec.RefStudentID, new ValueObj.DemeritsVO());
+
+            //    demeritListDic[rec.RefStudentID].AddDemerit(rec);
+            //}
 
             _BGW.ReportProgress(30);
 
-            // 取得獎歷紀錄
-            List<Data.MeritRecord> meritList = K12.Data.Merit.SelectByStudentIDs(_StudentIdList);
-            Dictionary<string, ValueObj.MeritsVO> meritListDic = new Dictionary<string,ValueObj.MeritsVO>();
-            // 把資料依照學生跟學年度學期分好
-            foreach (Data.MeritRecord rec in meritList)
-            {
+            //// 取得獎歷紀錄
+            //List<Data.MeritRecord> meritList = K12.Data.Merit.SelectByStudentIDs(_StudentIdList);
+            //Dictionary<string, ValueObj.MeritsVO> meritListDic = new Dictionary<string,ValueObj.MeritsVO>();
+            //// 把資料依照學生跟學年度學期分好
+            //foreach (Data.MeritRecord rec in meritList)
+            //{
 
-                if (!meritListDic.ContainsKey(rec.RefStudentID))
-                    meritListDic.Add(rec.RefStudentID, new ValueObj.MeritsVO());
+            //    if (!meritListDic.ContainsKey(rec.RefStudentID))
+            //        meritListDic.Add(rec.RefStudentID, new ValueObj.MeritsVO());
 
-                meritListDic[rec.RefStudentID].AddMerit(rec);
+            //    meritListDic[rec.RefStudentID].AddMerit(rec);
                 
-            }
+            //}
             #endregion
 
             _BGW.ReportProgress(50);
@@ -657,16 +690,19 @@ namespace K12.Report.ZhuengtouPointsCompetition.Forms
             {
                 if (schoolYear == null) continue;
 
-                List<Data.DemeritRecord> demeritList = demeritObj.GetDemeritsBySchoolYear(schoolYear);
+                List<AutoSummaryRecord> demeritList = demeritObj.GetDemeritsBySchoolYear(schoolYear);
 
-                foreach(Data.DemeritRecord rec in demeritList)
+                foreach (AutoSummaryRecord rec in demeritList)
                 {
-                    if(rec.DemeritA.HasValue)
-                        Demerit[0] = rec.DemeritA.Value;
-                    if(rec.DemeritB.HasValue)
-                        Demerit[1] = rec.DemeritB.Value;
-                    if(rec.DemeritC.HasValue)
-                        Demerit[2] += rec.DemeritC.Value;
+                    Demerit[0] += rec.DemeritA;
+                    Demerit[1] += rec.DemeritB;
+                    Demerit[2] += rec.DemeritC;
+                    //if(rec.DemeritA.HasValue)
+                    //    Demerit[0] = rec.DemeritA.Value;
+                    //if(rec.DemeritB.HasValue)
+                    //    Demerit[1] = rec.DemeritB.Value;
+                    //if(rec.DemeritC.HasValue)
+                    //    Demerit[2] += rec.DemeritC.Value;
                 }
             }
 
@@ -726,15 +762,18 @@ namespace K12.Report.ZhuengtouPointsCompetition.Forms
                 foreach (ValueObj.SchoolYearSemester schoolYear in needSchoolYearList)
                 {
                     if (schoolYear == null) continue;
-                    List<Data.MeritRecord> meritList = meritsObj.GetMeritsBySchoolYear(schoolYear);
-                    foreach (Data.MeritRecord rec in meritList)
+                    List<AutoSummaryRecord> meritList = meritsObj.GetMeritsBySchoolYear(schoolYear);
+                    foreach (AutoSummaryRecord rec in meritList)
                     {
-                        if(rec.MeritA.HasValue)
-                            meritCount[0] += rec.MeritA.Value;
-                        if(rec.MeritB.HasValue)
-                            meritCount[1] += rec.MeritB.Value;
-                        if(rec.MeritC.HasValue)
-                            meritCount[2] += rec.MeritC.Value;
+                        meritCount[0] += rec.MeritA;
+                        meritCount[1] += rec.MeritB;
+                        meritCount[2] += rec.MeritC;
+                        //if(rec.MeritA.HasValue)
+                        //    meritCount[0] += rec.MeritA.Value;
+                        //if(rec.MeritB.HasValue)
+                        //    meritCount[1] += rec.MeritB.Value;
+                        //if(rec.MeritC.HasValue)
+                        //    meritCount[2] += rec.MeritC.Value;
                     }
                 }
             }

@@ -76,16 +76,20 @@
       <HintPath>..\..\..\..\..\..\..\..\ischool desktop\modules\JHCore\JHSchool.Data.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="K12.BusinessLogic">
+      <HintPath>library\K12.BusinessLogic.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="K12.Data">
-      <HintPath>..\..\..\..\..\..\..\..\ischool desktop\modules\SHSchoolLoader\K12.Data.dll</HintPath>
+      <HintPath>library\K12.Data.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="K12.Presentation">
-      <HintPath>..\..\..\..\..\..\..\..\ischool desktop\modules\SHSchoolLoader\K12.Presentation.dll</HintPath>
+      <HintPath>library\K12.Presentation.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="SmartSchool.ErrorReporting">
-      <HintPath>..\..\..\..\..\..\..\..\ischool desktop\modules\SHSchoolLoader\SmartSchool.ErrorReporting.dll</HintPath>
+      <HintPath>library\SmartSchool.ErrorReporting.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
