@@ -44,20 +44,23 @@
       <HintPath>..\..\..\..\..\..\..\..\ischool desktop\kernel\FISCA.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="FISCA.Authentication">
-      <HintPath>..\..\..\..\..\..\..\..\ischool desktop\kernel\FISCA.Authentication.dll</HintPath>
+    <Reference Include="FISCA.Authentication, Version=1.9.0.20, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>library\FISCA.Authentication.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="FISCA.Data">
       <HintPath>..\..\..\..\..\..\..\..\ischool desktop\kernel\FISCA.Data.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="FISCA.DSAClient">
-      <HintPath>..\..\..\..\..\..\..\..\ischool desktop\kernel\FISCA.DSAClient.dll</HintPath>
+    <Reference Include="FISCA.DSAClient, Version=1.0.1.16, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>library\FISCA.DSAClient.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="FISCA.DSAUtil">
-      <HintPath>..\..\..\..\..\..\..\..\ischool desktop\kernel\FISCA.DSAUtil.dll</HintPath>
+    <Reference Include="FISCA.DSAUtil, Version=3.9.0.10, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>library\FISCA.DSAUtil.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="FISCA.Permission">
@@ -145,6 +148,30 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\中投區積分比序_Template.xls" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="library\Aspose.Cells.dll" />
+    <Content Include="library\Aspose.Cells.xml" />
+    <Content Include="library\DevComponents.DotNetBar2.dll" />
+    <Content Include="library\FISCA.Authentication.dll" />
+    <Content Include="library\FISCA.Authentication.pdb" />
+    <Content Include="library\FISCA.Authentication.xml" />
+    <Content Include="library\FISCA.Data.dll" />
+    <Content Include="library\FISCA.dll" />
+    <Content Include="library\FISCA.DSAClient.dll" />
+    <Content Include="library\FISCA.DSAClient.pdb" />
+    <Content Include="library\FISCA.DSAClient.xml" />
+    <Content Include="library\FISCA.DSAUtil.dll" />
+    <Content Include="library\FISCA.DSAUtil.pdb" />
+    <Content Include="library\FISCA.DSAUtil.xml" />
+    <Content Include="library\FISCA.Permission.dll" />
+    <Content Include="library\FISCA.Presentation.dll" />
+    <Content Include="library\FISCA.UDT.dll" />
+    <Content Include="library\JHSchool.Data.dll" />
+    <Content Include="library\K12.BusinessLogic.dll" />
+    <Content Include="library\K12.Data.dll" />
+    <Content Include="library\K12.Presentation.dll" />
+    <Content Include="library\SmartSchool.ErrorReporting.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

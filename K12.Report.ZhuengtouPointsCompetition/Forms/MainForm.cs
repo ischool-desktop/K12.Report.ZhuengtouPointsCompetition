@@ -560,8 +560,8 @@ namespace K12.Report.ZhuengtouPointsCompetition.Forms
             // 特殊條件
             // 取得三下的學年度學期
             ValueObj.SchoolYearSemester specilSchoolYear = gradeMap[6];
-            // 截止時間 103/5/9
-            DateTime deadTime = new DateTime(2014, 5, 9);
+            //// 截止時間 103/5/9, 修改不再限制日期(2016/3/10)
+            //DateTime deadTime = new DateTime(2014, 5, 9);
 
             if(servicesObj != null)
             {
@@ -576,8 +576,7 @@ namespace K12.Report.ZhuengtouPointsCompetition.Forms
                     foreach(var serviceObj in serviceList)
                     {
                         if (schoolYear == specilSchoolYear)
-                        {
-                            if (serviceObj.OccurTime.HasValue && (serviceObj.OccurTime.Value <= deadTime))
+                        {                            
                                 hours += serviceObj.Hours;
                         }
                         else

@@ -14,3 +14,10 @@ D:\GitHub2\中投區積分比序\K12.Report.ZhuengtouPointsCompetition\K12.Repor
 D:\GitHub2\中投區積分比序\K12.Report.ZhuengtouPointsCompetition\K12.Report.ZhuengtouPointsCompetition\obj\Debug\K12.Report.ZhuengtouPointsCompetition.pdb
 D:\GitHub2\中投區積分比序\K12.Report.ZhuengtouPointsCompetition\K12.Report.ZhuengtouPointsCompetition\bin\Debug\K12.Report.ZhuengtouPointsCompetition.dll
 D:\GitHub2\中投區積分比序\K12.Report.ZhuengtouPointsCompetition\K12.Report.ZhuengtouPointsCompetition\bin\Debug\K12.Report.ZhuengtouPointsCompetition.pdb
+D:\GitProjModules\ischoolDesktop\K12.Report.ZhuengtouPointsCompetition\K12.Report.ZhuengtouPointsCompetition\bin\Debug\K12.Report.ZhuengtouPointsCompetition.dll
+D:\GitProjModules\ischoolDesktop\K12.Report.ZhuengtouPointsCompetition\K12.Report.ZhuengtouPointsCompetition\bin\Debug\K12.Report.ZhuengtouPointsCompetition.pdb
+D:\GitProjModules\ischoolDesktop\K12.Report.ZhuengtouPointsCompetition\K12.Report.ZhuengtouPointsCompetition\obj\Debug\K12.Report.ZhuengtouPointsCompetition.Forms.MainForm.resources
+D:\GitProjModules\ischoolDesktop\K12.Report.ZhuengtouPointsCompetition\K12.Report.ZhuengtouPointsCompetition\obj\Debug\K12.Report.ZhuengtouPointsCompetition.Properties.Resources.resources
+D:\GitProjModules\ischoolDesktop\K12.Report.ZhuengtouPointsCompetition\K12.Report.ZhuengtouPointsCompetition\obj\Debug\K12.Report.ZhuengtouPointsCompetition.csproj.GenerateResource.Cache
+D:\GitProjModules\ischoolDesktop\K12.Report.ZhuengtouPointsCompetition\K12.Report.ZhuengtouPointsCompetition\obj\Debug\K12.Report.ZhuengtouPointsCompetition.dll
+D:\GitProjModules\ischoolDesktop\K12.Report.ZhuengtouPointsCompetition\K12.Report.ZhuengtouPointsCompetition\obj\Debug\K12.Report.ZhuengtouPointsCompetition.pdb
