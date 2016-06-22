@@ -18,8 +18,8 @@ namespace K12.Report.ZhuengtouPointsCompetition
             CheckUDTExist();
 
             RibbonBarItem rbRptItem1 = MotherForm.RibbonBarItems["學生", "資料統計"];
-            rbRptItem1["報表"]["成績相關報表"]["中投區積分比序"].Enable = Permissions.IsEnablePointsReport;
-            rbRptItem1["報表"]["成績相關報表"]["中投區積分比序"].Click += delegate
+            rbRptItem1["報表"]["成績相關報表"]["中投區積分比序證明單(105)"].Enable = Permissions.IsEnablePointsReport;
+            rbRptItem1["報表"]["成績相關報表"]["中投區積分比序證明單(105)"].Click += delegate
             {
                 if (NLDPanels.Student.SelectedSource.Count > 0)
                 {
@@ -30,7 +30,7 @@ namespace K12.Report.ZhuengtouPointsCompetition
 
             // 在權限畫面出現"評量成績未達標準名單"權限
             Catalog catalog1 = RoleAclSource.Instance["學生"]["報表"];
-            catalog1.Add(new RibbonFeature(Permissions.KeyPointsReport, "中投區積分比序"));
+            catalog1.Add(new RibbonFeature(Permissions.KeyPointsReport, "中投區積分比序證明單(105)"));
         }
 
         private static void CheckUDTExist()
